@@ -66,3 +66,8 @@ For inquiries regarding this research, please reach out to:
 - Aida Bah – aidasulayb@gmail.com
 
 - Dr. Srikanth Gururajan (Lab Director) – srikanth.gururajan@slu.edu
+
+## License
+This project is licensed under the **AirCRAFT Lab Research License (ALRL) v1.0**. It is for internal research use at the **AirCRAFT Lab, Saint Louis University (SLU)**. External distribution, commercial use, and public disclosure are prohibited without prior approval.
+
+For full details, see the file `LICENSE.md`.
