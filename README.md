@@ -65,4 +65,4 @@ For inquiries regarding this research, please reach out to:
 
 - Aida Bah – aidasulayb@gmail.com
 
-- Srikanth Gururajan (Lab Director) – srikanth.gururajan@slu.edu
+- Dr. Srikanth Gururajan (Lab Director) – srikanth.gururajan@slu.edu
