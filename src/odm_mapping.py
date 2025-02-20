@@ -18,4 +18,4 @@ while task.info.get("status") !="DONE":
 
 task.download_assets(OUTPUT_FOLDER)
 
-print(f"Mapping complete: Output saved in {OUTPUT_FOLDER}")
+print(f"Mapping complete.\n Output saved in {OUTPUT_FOLDER}")
