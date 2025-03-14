@@ -1,16 +1,15 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(CD "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 PX4_DIR="$PARENT_DIR/PX4-Autopilot"
-QGC_APPIMAGE="$PARENT_DIR/QGroundControl/QGroundContro.AppImage"
+QGC_APPIMAGE="$PARENT_DIR/QGroundControl/QGroundControl.AppImage"
 
-echo "Launching Gazebo SITL..."
-
-cd "$PX4_DIR"
-make px4_sitl_default gazebo-classic_plane
+echo "Launching PX4 SITL..."
+wt -w 0 nt -p "Ubuntu-22.04" --title "PX$ SITL" bash -c "cd '$PX4_DIR'
+&& make px4_sitl_default gazebo-classic_plane; exec bash"
 
 echo "Launching QGroundControl..."
-cd "$QGC_APPIMAGE"
-~./QGroundConrol.AppImage
+
+wt -w 0 nt -p "Ubuntu-22.04" --title "QGroundControl" bash -c "'$QGC_APPIMAGE'; exec bash"
