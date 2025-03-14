@@ -6,12 +6,12 @@ PARENT_DIR="$(dirname "$SCRIPT_DIR")"
 PX4_DIR="$PARENT_DIR/PX4-Autopilot"
 QGC_APPIMAGE="$PARENT_DIR/QGroundControl/QGroundControl.AppImage"
 
-if [! -d "$PX4_DIR"]; then 
+if [ ! -d "$PX4_DIR"]; then 
     echo "Error: PX4-Autopilot directory not found at $PX4_DIR"
     exit 1
 fi
 
-if [! -f "$QGC_APPIMAGE"]; then
+if [ ! -f "$QGC_APPIMAGE"]; then
     echo "Error: QGroundControl AppImage not found at $QGC_APPIMAGE"
     exit 1
 fi
@@ -24,7 +24,7 @@ fi
 
 echo "Launching QGroundControl..."
 
-if ! xterm -e "'$QGC_APPIMAGE'; exec bash" & then
+if ! xterm -e "$QGC_APPIMAGE; exec bash" & then
     echo "Error: Failed to launch QGroundControl"
     exit 1
 fi
