@@ -17,9 +17,14 @@ if [ ! -f "$QGC_APPIMAGE"]; then
 fi
 
 echo "Launching PX4 SITL..."
-xterm -e "cd '$PX4_DIR' && make px4_sitl_default gazebo-classic_plane; exec bash" &
+if ! xterm -e "cd '$PX4_DIR' && make px4_sitl_default gazebo-classic_plane; exec bash" & then
+    echo "Error: Failed to launch PX4 SITL"
+    exit 1
+fi
 
 echo "Launching QGroundControl..."
-xterm -e "'$QGC_APPIMAGE'; exec bash" &
 
-echo "PX4 SITL and QGroundControl launch succesful."
+if ! xterm -e "$QGC_APPIMAGE; exec bash" & then
+    echo "Error: Failed to launch QGroundControl"
+    exit 1
+fi
