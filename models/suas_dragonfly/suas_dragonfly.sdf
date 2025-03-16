@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <sdf version="1.5">
-  <model name="myPlaneCam">
+  <model name="suas_dragonfly">
     <include>
       <uri>model://plane</uri>
+      <pose>0 0 0 0 0 0</pose>
+      <name>plane</name>
     </include>
 
     <link name="camera_link">
-      <pose>0 0 -0.1 0 0 0</pose> <!-- Adjust the pose to place the camera below the plane -->
+      <pose>0 0 -0.1 0 1.57 0</pose>
       <sensor name="camera_sensor" type="camera">
         <camera>
-          <horizontal_fov>1.047</horizontal_fov> <!-- 60 degrees FOV -->
+          <horizontal_fov>1.047</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
@@ -24,5 +26,10 @@
         <visualize>true</visualize>
       </sensor>
     </link>
+
+    <joint name="camera_joint" type="fixed">
+      <parent>plane::link</parent>
+      <child>camera_link</child>
+    </joint>
   </model>
 </sdf>
