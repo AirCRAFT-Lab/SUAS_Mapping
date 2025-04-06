@@ -3,15 +3,47 @@
   <model name="suas_dragonfly">
     <include>
       <uri>model://plane</uri>
-      <pose>0 0 0 0 0 0</pose>
-      <name>plane</name>
     </include>
 
+    <include>
+      <uri>model://geotagged_cam</uri>
+      <pose>0 0 0 0 -1.571 0</pose>
+    </include>
+
+    <joint name="geotagged_cam_joint" type="fixed">
+      <parent>plane::base_link</parent>
+      <child>geotagged_cam::camera_link</child>
+    </joint>
+
     <link name="camera_link">
-      <pose>0 0 -0.1 0 1.57 0</pose>
+      <pose>0 0 -0.1 0 0 0</pose> 
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+      <visual name="camera_visual">
+        <geometry>
+          <box>
+            <size>0.01 0.01 0.01</size> 
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Red</name> 
+            <uri>__default__</uri>
+          </script>
+        </material>
+      </visual>
       <sensor name="camera_sensor" type="camera">
         <camera>
-          <horizontal_fov>1.047</horizontal_fov>
+          <horizontal_fov>1.047</horizontal_fov> 
           <image>
             <width>640</width>
             <height>480</height>
@@ -28,8 +60,9 @@
     </link>
 
     <joint name="camera_joint" type="fixed">
-      <parent>plane::link</parent>
-      <child>camera_link</child>
+      <parent>plane::base_link</parent>
+      <child>plane_cam::camera_link</child>
     </joint>
+
   </model>
 </sdf>
