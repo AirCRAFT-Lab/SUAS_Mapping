@@ -47,14 +47,24 @@
           <image>
             <width>640</width>
             <height>480</height>
+            <format>R8G8B8</format>
           </image>
           <clip>
             <near>0.1</near>
             <far>100</far>
           </clip>
+
+          <!--  saves images to a folder -->
+          <save enabled="true">
+            <path>/home/aidabah/test_images</path> <!-- temporarily set to 1min update to avoid memory overload-->
+            <filename_format>frame_%04d.jpg</filename_format>
+            <start_on_capture>true</start_on_capture>
+          </save>
+
         </camera>
+        
         <always_on>1</always_on>
-        <update_rate>30</update_rate>
+        <update_rate>0.033w</update_rate>
         <visualize>true</visualize>
       </sensor>
     </link>
