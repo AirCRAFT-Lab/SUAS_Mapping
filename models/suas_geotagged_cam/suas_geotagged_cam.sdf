@@ -3,7 +3,6 @@
   <model name="suas_geotagged_cam">
     <link name="camera_link">
       <inertial>
-        <!-- place holder -->
         <pose>-0.041 0 -0.162 0 0 0</pose>
         <mass>0.1</mass>
         <inertia>
@@ -38,6 +37,7 @@
             <filename_format>frame_%04d.jpg</filename_format>
             <start_on_capture>true</start_on_capture>
           </save>
+          <!---->
 
         </camera>
         <always_on>1</always_on>
