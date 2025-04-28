@@ -7,13 +7,13 @@
     </include>
 
     <include>
-      <uri>model://suas_geotagged_cam</uri>
+      <uri>model://geotagged_cam</uri>
       <pose>0 0 0 0 -1.571 0</pose>
     </include>
 
-    <joint name="suas_geotagged_cam_joint" type="fixed">
+    <joint name="geotagged_cam_joint" type="fixed">
       <parent>plane::base_link</parent>
-      <child>suas_geotagged_cam::camera_link</child>
+      <child>geotagged_cam::camera_link</child>
     </joint>
 
   </model>
