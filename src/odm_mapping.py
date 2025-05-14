@@ -6,8 +6,10 @@ import errno
 
 start_time = time.time()
 
-RAW_IMAGES_DIR = os.path.join("data", "raw")
-OUTPUT_FOLDER = os.path.join("data", "output")
+
+PROJECT_ROOT = os.path.join(os.path.dirname(__file__), '..')
+RAW_IMAGES_DIR = os.path.join(PROJECT_ROOT, "data", "raw")
+OUTPUT_FOLDER = os.path.join(PROJECT_ROOT, "data", "output")
 
 # Ensure output folder exists
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
