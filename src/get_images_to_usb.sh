@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # SSH into Jetson and run commands remotely
 ssh suas@192.168.0.238 << 'EOF'
   echo "Starting Docker container..."
