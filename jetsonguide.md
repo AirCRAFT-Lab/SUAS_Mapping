@@ -73,8 +73,7 @@ Once images are copied to the **ground station computer** under the `data/raw` d
    ```bash
    docker run -p 3000:3000 opendronemap/nodeodm
    ```
-> ⚠️ **Note:** Do not use `docker attach` when copying files to the local machine. You must start the container, but remain *outside* of it to use `docker cp`.
-
+   
 3. You can now run the mapping script:
    ```bash
    python odm_mapping.py
