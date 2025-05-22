@@ -1,30 +1,17 @@
 #!/bin/bash
 
-#JETSON_IP = some fixed ip for jetson
-#ssh $JETSON_IP 
+#!/bin/bash
 
-#Define variables
-CONTAINER_NAME="SUAS_GSTREAMER" 
-CONTAINER_PATH=/ultralytics #Subject to change
-MOUNT_PATH= "/mnt/usb"
-IMAGE_FILE_PATH="$LOCAL_SAVE_DIR/images" #Subject to change if image directory already exists
+# SSH into Jetson and run commands remotely
+ssh suas@192.168.0.238 << 'EOF'
+  echo "Starting Docker container..."
+  docker start SUAS_GSTREAMER
 
+  echo "Copying images from Docker container to Jetson home directory..."
+  docker cp SUAS_GSTREAMER:/ultralytics/Flight_tests /home/suas
 
-#Copy images from docker to local Jetson directory
-docker cp "$CONTAINER_NAME:$CONTAINER_PATH" "$LOCAL_SAVE_DIR" #will probably need to edit paths
+  echo "Copying images from Jetson to USB drive..."
+  cp -r /home/suas/Flight_tests /media/suas/ABDULRAHMAN/
 
-
-#Create mount path if it doesn't exist 
-if [ ! -e "$MOUNT_PATH"]; then 
-    echo "USB mount directory does not exist. Creating one now..."
-    sudo mkdir $MOUNT_PATH 
-fi
-
-#mount and copy images (assume usb will be at /dev/sda1, check decided usb)
-sudo mount /dev/sda1 $MOUNT_PATH
-
-cp -r "$IMAGE_FILE_PATH" "$MOUNT_PATH"
-
-sudo umount "$MOUNT_PATH"
-
-echo "Files copied to USB successfully."
+  echo "Done."
+EOF
