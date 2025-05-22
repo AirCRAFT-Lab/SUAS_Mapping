@@ -5,7 +5,7 @@ This guide provides key setup steps and common commands for working with the Jet
 
 ---
 
-## 📡 SSH into the Jetson & Start Docker
+##  SSH into the Jetson & Start Docker
 
 1. **SSH into Jetson Nano**  
    Replace the IP if needed (default shown below):
@@ -19,7 +19,7 @@ This guide provides key setup steps and common commands for working with the Jet
    ```
 ---
 
-## 🐳 Accessing the Running Docker Container
+##  Accessing the Running Docker Container
 
 To interact with files or run programs inside the container:
    ```bash
@@ -29,7 +29,7 @@ You’ll be inside the container (`root@...:/ultralytics`) where scripts and dat
 
 ---
 
-## 💾 Copying Images to Jetson
+##  Copying Images to Jetson
 
 After your flight:
 ```bash
@@ -43,7 +43,7 @@ Images will now be accessible on the Jetson at:
 
 ---
 
-## 🔌 Saving Images to USB Flash Drive
+##  Saving Images to USB Flash Drive
 
 Make sure your USB is mounted (AirCRAFT Lab's default mount point is `/media/suas/ABDULRAHMAN`):
 ```bash
@@ -57,15 +57,15 @@ lsblk
 
 ---
 
-## 🗺️ Running the Image Mapping Pipeline
+##  Running the Image Mapping Pipeline
 
 Once images are copied to the **ground station computer** under the `data/raw` directory, follow these steps (caution: steps are designed for Windows OS):
 
-### ✅ Prerequisites (see full `README.md`)
+###  Prerequisites (see full `README.md`)
 - Docker Desktop installed and running  
 - `odm_mapping.py` is available in your repo
 
-### 🧠 Start the NodeODM API (on Windows)
+###  Start the NodeODM API (on Windows)
 
 1. Open Docker Desktop (keep it running in the background)
 2. Run in a terminal:
