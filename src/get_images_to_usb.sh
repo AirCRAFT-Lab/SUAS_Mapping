@@ -8,8 +8,9 @@ ssh suas@192.168.0.238 << 'EOF'
   echo "Copying images from Docker container to Jetson home directory..."
   docker cp SUAS_GSTREAMER:/ultralytics/Flight_tests /home/suas
 
-  echo "Copying images from Jetson to USB drive..."
-  cp -r /home/suas/Flight_tests /media/suas/ABDULRAHMAN/
+  echo "Copying images from Jetson to local machine..."
+  exit 
+  scp -r suas@192.168.0.238:/Flight_tests/06_25_2025/Flight_1/Images SUAS_Mapping/data/raw
 
   echo "Done."
 EOF
