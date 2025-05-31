@@ -5,12 +5,20 @@ ssh suas@192.168.0.238 << 'EOF'
   echo "Starting Docker container..."
   docker start SUAS_GSTREAMER
 
-  echo "Copying images from Docker container to Jetson home directory..."
-  docker cp SUAS_GSTREAMER:/ultralytics/Flight_tests /home/suas
+  echo "Finding latest Images directory..."
+  # Find all 'Images' directories, sort by modification time, get the latest
+  latest_images_dir=\$(find /ultralytics/Flight_tests -type d -name Images | sort | tail -n 1)
 
-  echo "Copying images from Jetson to local machine..."
-  exit 
-  scp -r suas@192.168.0.238:/Flight_tests/06_25_2025/Flight_1/Images SUAS_Mapping/data/raw
+  echo "Latest Images directory: \$latest_images_dir"
 
-  echo "Done."
+  echo "Copying latest Images directory to Jetson home..."
+  docker cp SUAS_GSTREAMER:\$latest_images_dir /home/suas/latest_images
+
+  echo "Done with Docker operations."
 EOF
+
+echo "Copying latest Images from Jetson to local machine..."
+scp -r suas@192.168.0.238:/home/suas/latest_images SUAS_Mapping/data/raw
+
+echo "All done."
+
