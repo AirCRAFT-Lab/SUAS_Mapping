@@ -8,7 +8,7 @@ ssh suas@192.168.0.238 << 'EOF'
   echo "Finding latest Images directory..."
   latest_images_dir=$(docker exec SUAS_GSTREAMER find /ultralytics/Flight_tests -type d -name Images | sort | tail -n 1)
 
-  echo "Latest Images directory: \$latest_images_dir"
+  echo "Latest Images directory: $latest_images_dir"
 
   # Ensure target directory is clean
   if [ -d /home/suas/latest_images ]; then
@@ -20,12 +20,12 @@ ssh suas@192.168.0.238 << 'EOF'
   mkdir -p /home/suas/latest_images
 
   echo "Copying latest Images directory to Jetson home..."
-  docker cp SUAS_GSTREAMER:\$latest_images_dir /home/suas/latest_images
+  docker cp SUAS_GSTREAMER:$latest_images_dir /home/suas/latest_images
 
   echo "Done with Docker operations."
 EOF
 
 echo "Copying latest Images from Jetson to local machine..."
-scp -r suas@192.168.0.238:/home/suas/latest_images ../data/raw
+scp -r suas@192.168.0.238:/home/suas/latest_images/Images/* ../data/raw
 
 echo "All done."
