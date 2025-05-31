@@ -6,10 +6,18 @@ ssh suas@192.168.0.238 << 'EOF'
   docker start SUAS_GSTREAMER
 
   echo "Finding latest Images directory..."
-  # Find all 'Images' directories, sort by modification time, get the latest
-  latest_images_dir=\$(find /ultralytics/Flight_tests -type d -name Images | sort | tail -n 1)
+  latest_images_dir=$(find /ultralytics/Flight_tests -type d -name Images | sort | tail -n 1)
 
   echo "Latest Images directory: \$latest_images_dir"
+
+  # Ensure target directory is clean
+  if [ -d /home/suas/latest_images ]; then
+    echo "Removing previous latest_images directory..."
+    rm -rf /home/suas/latest_images
+  fi
+
+  echo "Creating new latest_images directory..."
+  mkdir -p /home/suas/latest_images
 
   echo "Copying latest Images directory to Jetson home..."
   docker cp SUAS_GSTREAMER:\$latest_images_dir /home/suas/latest_images
@@ -21,4 +29,3 @@ echo "Copying latest Images from Jetson to local machine..."
 scp -r suas@192.168.0.238:/home/suas/latest_images SUAS_Mapping/data/raw
 
 echo "All done."
-
