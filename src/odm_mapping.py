@@ -1,8 +1,8 @@
-import pyodm
 import time
 import os
 import errno
-
+from pyodm import exceptions, Node
+import pyodm
 
 start_time = time.time()
 
@@ -29,7 +29,14 @@ print("Sending images to OpenDroneMap server...")
 task = node.create_task(RAW_IMAGES, skip_post_processing=True)
 
 print("Task in progress...")
-task.wait_for_completion()
+
+try:
+    task.wait_for_completion()
+except exceptions.TaskFailedError:
+    print("Task failed with error:", task.info().last_error)
+
+#if task.TaskStatus.FAILED:
+    #print(task.TaskStatus.last_error)
 
 print("Download in progress...")
 
