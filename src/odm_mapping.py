@@ -3,6 +3,7 @@ import os
 import errno
 from pyodm import exceptions, Node
 import pyodm
+from pyodm.types import TaskStatus    
 
 start_time = time.time()
 
@@ -26,27 +27,44 @@ node = pyodm.Node("localhost", 3000)
 
 print("Sending images to OpenDroneMap server...")
 
-task = node.create_task(RAW_IMAGES, skip_post_processing=True)
+task = node.create_task(
+    RAW_IMAGES, 
+    skip_post_processing=True,
+    options={
+        "fast-orthophoto": True,
+        "skip-3dmodel": True,
+        "resize-to": 2048,
+        "matcher-type": "flann",
+        "use-hybrid-bundle-adjustment": True,
+        "orthophoto-resolution": 5,
+        "min-num-features": 8000
+    })
 
-print("Task in progress...")
+print("Task submitted. Monitoring progress...")
 
-try:
-    task.wait_for_completion()
-except exceptions.TaskFailedError:
-    print("Task failed with error:", task.info().last_error)
+while True:
+    status = task.info().status
+    print(f"Current status: {status}")
 
-#if task.TaskStatus.FAILED:
-    #print(task.TaskStatus.last_error)
+    if status == TaskStatus.COMPLETED:
+        break
+    elif status == TaskStatus.FAILED:
+        print("Task failed with error:", task.info().last_error)
+        break
 
-print("Download in progress...")
+    time.sleep(10)
+    
+if task.info().status == TaskStatus.COMPLETED:
+    print("Download in progress...")
+    try:
+        task.download_assets(OUTPUT_FOLDER)
+    except PermissionError as e:
+        if e.errno == errno.EACCES:
+            print(f"Warning: Could not delete ZIP file because it's in use. Skipping cleanup.")
+        else:
+            raise 
+    print(f"Mapping complete.\nOutput saved in {OUTPUT_FOLDER}")
 
-try:
-    task.download_assets(OUTPUT_FOLDER)
-except PermissionError as e:
-    if e.errno == errno.EACCES:
-        print(f"Warning: Could not delete ZIP file because it's in use. Skipping cleanup.")
-    else:
-        raise 
 
 end_time = time.time()
 elapsed = end_time - start_time
@@ -54,5 +72,4 @@ elapsed = end_time - start_time
 mins, secs = divmod(elapsed, 60)
 hrs, mins = divmod(mins, 60)
 
-print(f"Mapping complete.\nOutput saved in {OUTPUT_FOLDER}")
 print(f"Total runtime: {int(hrs)}h {int(mins)}m {int(secs)}s")
