@@ -31,13 +31,9 @@ task = node.create_task(
     RAW_IMAGES, 
     skip_post_processing=True,
     options={
-        "fast-orthophoto": True,
+        #"fast-orthophoto": True,
         "skip-3dmodel": True,
-        "resize-to": 2048,
-        "matcher-type": "flann",
-        "use-hybrid-bundle-adjustment": True,
-        "orthophoto-resolution": 5,
-        "min-num-features": 8000
+        #"orthophoto-resolution": 5
     })
 
 print("Task submitted. Monitoring progress...")
