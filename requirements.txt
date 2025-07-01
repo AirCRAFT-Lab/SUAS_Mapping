@@ -1,5 +1,6 @@
 certifi==2025.1.31
 charset-normalizer==3.4.1
+enums==0.0.2
 future==1.0.0
 idna==3.10
 lxml==5.3.1
