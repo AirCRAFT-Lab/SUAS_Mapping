@@ -1,7 +1,9 @@
-# SUAS Mapping (2025)
-This repository contains the code for an automated mapping system designed for the 2025 Student Unmanned Aerial Systems (SUAS) competition. The system captures, generates, and exports a high-resolution map of a predefined area utilizing geotagged aerial data.
+# OrthoFly
+This repository contains OrthoFly, an initiative to develop advanced aerial mapping software for the AirCRAFT Lab’s Student Unmanned Aerial Systems (SUAS) team at Saint Louis University. The team participates annually in the SUAS competition hosted by RoboNation.
 
-This project is developed under the Aircraft Computational & Resource Aware Fault Tolerance (AirCRAFT) Lab at Saint Louis University, which focuses on research and development in autonomous systems, robotics, and unmanned aerial vehicles (UAVs). 
+OrthoFly is designed to autonomously capture, generate, and export high-resolution orthomosaic maps of mission areas using geotagged aerial imagery.
+
+The current working version relies on OpenDroneMap for post-processed image stitching and map generation. In parallel, custom software is under active development to enable in-flight orthomosaic creation and near real-time mapping capabilities.
 
 
 ## Mission:
