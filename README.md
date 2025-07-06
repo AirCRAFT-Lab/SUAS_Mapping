@@ -157,7 +157,7 @@ This project is being developed under the **Aircraft Computational & Resource Aw
 ## Contact
 For inquiries regarding this research, please reach out to:
 
-- Aida Bah – aidasulayb@gmail.com
+- Aida Bah (SUAS Computer Science Division Lead) – aidasulayb@gmail.com
 
 - Dr. Srikanth Gururajan (Lab Director) – srikanth.gururajan@slu.edu
 
